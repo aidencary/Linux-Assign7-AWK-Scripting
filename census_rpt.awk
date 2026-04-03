@@ -5,6 +5,11 @@
 BEGIN {
     # Delimiter is a tab
     FS = "\t"
+    # Set constant min and max values for comparison
+    max_pop_density = -1
+    min_pop_density = 1000000000
+    max_percent_of_water = -1
+    min_percent_of_water = 1000000000
     # Print the header for the report
     printf "%-20s %15s %12s\n", "Country", "Pop/Sq Mile", "% Water"
     # Print a line of dashes to separate the header from the data
@@ -25,12 +30,12 @@ BEGIN {
         max_pop_density_country = $1
     }
     # Keep track of Lowest Population Density
-    if (pop_density < min_pop_density || NR == 1) {
+    if (pop_density < min_pop_density) {
         min_pop_density = pop_density
         min_pop_density_country = $1
     }
     # Keep track of Highest Percentage of Water
-    if (percent_of_water > max_percent_of_water || NR == 1) {
+    if (percent_of_water > max_percent_of_water) {
         max_percent_of_water = percent_of_water
         max_percent_of_water_country = $1
     }
